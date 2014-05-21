@@ -42,7 +42,7 @@ You may specify attributes with your requests using JSON as follows:
 You must include the following headers with your requests:
 
 ```
-Content-Type: application/json; charset=utf-8
+Accept: application/json; charset=utf-8
 X-Factory: hangar
 ```
 
