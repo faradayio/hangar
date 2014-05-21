@@ -29,9 +29,15 @@ GET /posts/new
 
 Both will respond with a JSON representation of the object.
 
+Hangar also provides a route to clean the database after each test:
+
+```
+DELETE /
+```
+
 ### Attributes
 
-You may specify attributes with your requests using JSON as follows:
+You may specify attributes with your GET and POST requests using JSON as follows:
 
 ```
 { "post": { "title": "Dolor Sit Amet" } }
