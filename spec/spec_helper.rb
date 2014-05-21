@@ -2,9 +2,6 @@
 ENV['RACK_ENV'] = 'test'
 ENV['RAILS_ENV'] = 'test'
 
-require 'dotenv'
-Dotenv.overload '.env.test'
-
 require File.expand_path("../dummy/config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
