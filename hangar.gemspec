@@ -7,16 +7,16 @@ require "hangar/version"
 Gem::Specification.new do |s|
   s.name        = "hangar"
   s.version     = Hangar::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Hangar."
-  s.description = "TODO: Description of Hangar."
+  s.authors     = ["Andy Rossmeissl"]
+  s.email       = ["andy@rossmeissl.net"]
+  s.homepage    = "http://github.com/faradayio/hangar"
+  s.summary     = "Use Rails factories from your frontend"
+  s.description = "Exposes routes (in the test environment only!) that allow your frontend to factory objects and clear them between tests"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
 
   s.add_dependency "rails", "~> 4.1.0"
 
-  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "rspec-rails"
 end
