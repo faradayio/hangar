@@ -5,5 +5,9 @@ module Hangar
       app.routes_reloader.paths.delete hangar_routes_path
       app.routes_reloader.paths.unshift hangar_routes_path
     end
+
+    initializer :validate_environment do
+      Hangar.validate_environment
+    end
   end
 end
