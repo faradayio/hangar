@@ -43,7 +43,7 @@ You must include the following headers with your requests:
 
 ```
 Accept: application/json; charset=utf-8
-X-Factory: hangar
+Factory: hangar
 ```
 
 ## Security
