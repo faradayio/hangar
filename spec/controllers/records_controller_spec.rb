@@ -1,10 +1,7 @@
 require 'spec_helper'
 
 describe Hangar::RecordsController do
-  render_views
-
   describe '#delete' do
-
     before do
       FactoryGirl.create :post
     end
