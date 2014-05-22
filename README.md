@@ -57,3 +57,13 @@ Factory: hangar
 ## Security
 
 Hangar is designed to run in the *test environment only*. A warning will be displayed if it is loaded in any other environment.
+
+## Corporate support
+
+<p><a href="http://faraday.io"><img src="https://s3.amazonaws.com/creative.faraday.io/logo.png" alt="Faraday logo"/></a></p>
+
+We use `hangar` for [marketing analytics at Faraday](http://faraday.io).
+
+## Copyright
+
+Copyright 2014 Andy Rossmeissl
