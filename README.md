@@ -35,6 +35,8 @@ Hangar also provides a route to clean the database after each test:
 DELETE /
 ```
 
+This returns 204 No Content when successful.
+
 ### Attributes
 
 You may specify attributes with your GET and POST requests using JSON as follows:

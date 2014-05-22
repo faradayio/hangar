@@ -18,6 +18,10 @@ describe 'Factory routing' do
     expect(get: '/posts/new').to route_to('hangar/resources#new')
   end  
 
+  it 'provides global #delete route' do
+    expect(delete: '/').to route_to('hangar/records#delete')
+  end  
+
   after do
     HANGAR_HEADERS.keys.each do |k|
       Rack::MockRequest::DEFAULT_ENV.delete k
