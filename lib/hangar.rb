@@ -1,6 +1,6 @@
 require "hangar/engine"
 require 'hangar/constraint'
-require 'pry'
+require 'database_cleaner'
 
 module Hangar
   BadEnvironmentError = Class.new(StandardError)
