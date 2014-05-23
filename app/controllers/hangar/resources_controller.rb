@@ -4,7 +4,7 @@ module Hangar
 
     def create
       created = FactoryGirl.create resource, resource_attributes
-      respond_with created
+      render json: created
     end
 
     def new
