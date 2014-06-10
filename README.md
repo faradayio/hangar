@@ -23,7 +23,7 @@ You may have special tables in your test database that should not be cleared by 
 ``` ruby
 # config/initializers/hangar.rb
 
-Hangar.do_not_delete = %w(very_important_things valuable_bitcoin_keys spatial_ref_sys)
+Hangar.do_not_delete = %w(very_important_things valuable_bitcoin_keys spatial_ref_sys) if defined?(Hangar)
 ```
 
 ## Usage
