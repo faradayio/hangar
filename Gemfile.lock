@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hangar (0.0.2)
+    hangar (0.0.3)
       database_cleaner
       rails (~> 4.1.0)
 
