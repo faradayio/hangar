@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610155904) do
+ActiveRecord::Schema.define(version: 20140619173513) do
 
   create_table "posts", force: true do |t|
     t.text "title"
+    t.text "lowercased_title"
   end
 
   create_table "very_important_things", force: true do |t|
