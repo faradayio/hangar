@@ -45,13 +45,30 @@ DELETE /
 
 This returns 204 No Content when successful.
 
-### Attributes
+### Overriding Factory Attributes
 
-You may specify attributes with your GET and POST requests using JSON as follows:
+You may override factory properties on your GET and POST requests using JSON as follows:
 
 ```
 { "post": { "title": "Dolor Sit Amet" } }
 ```
+
+### Specifying Returned JSON Attributes
+
+Specifying JSON attributes to return is the same as the ActiveModel::Serializer's as_json() include option. In the below examples, comments is a has_many association of our model.
+
+
+To include associations POST the JSON as follows:
+
+```
+{ "include": "comments" }
+```
+
+To specify which attributes to include on associations, POST the JSON as follows:
+{ "include": { "comments": { "only": "text" } } }
+
+In this case, text is an attribute on our comments model.
+
 
 ### Headers
 
@@ -59,6 +76,7 @@ You must include the following headers with your requests:
 
 ```
 Accept: application/json; charset=utf-8
+Content-Type: application/json    
 Factory: hangar
 ```
 
