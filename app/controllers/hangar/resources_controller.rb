@@ -4,7 +4,7 @@ module Hangar
 
     def create
       created = FactoryGirl.create resource, resource_attributes
-      render json: created
+      render json: created.as_json(include: includes)
     end
 
     def new
@@ -20,6 +20,10 @@ module Hangar
 
     def resource_attributes
       params.fetch(resource, {}).permit!
+    end
+
+    def includes
+      params.fetch(:include, [])
     end
   end
 end

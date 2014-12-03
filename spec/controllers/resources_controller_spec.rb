@@ -22,6 +22,19 @@ describe Hangar::ResourcesController do
       post :create, post: { title: 'Fun adventure' }, format: :json
       expect(json['title']).to eq('Fun adventure')
     end
+
+    it "accepts includes defining the association's columns" do
+      post :create, post: { title: 'Fun adventure' }, include: {"comments" => {"only" => "text"}},  format: :json
+      expect(json['title']).to eq('Fun adventure')
+      expect(json['comments'].count).to eq(5)
+      expect(json['comments'].first['text']).to eq("My comment")
+    end
+
+    it 'accepts includes defining associations' do
+      post :create, post: { title: 'Fun adventure' }, include: "comments",  format: :json
+      expect(json['title']).to eq('Fun adventure')
+      expect(json['comments'].count).to eq(5)
+    end
   end
 
   describe '#new' do
