@@ -3,7 +3,7 @@ module Hangar
     respond_to :json
 
     def delete
-      DatabaseCleaner.clean_with :deletion, except: Hangar.do_not_delete
+      DatabaseCleaner.clean_with Hangar.clean_strategy, except: Hangar.do_not_delete
       render nothing: true, status: :no_content
     end
   end
