@@ -26,6 +26,16 @@ You may have special tables in your test database that should not be cleared by 
 Hangar.do_not_delete = %w(very_important_things valuable_bitcoin_keys spatial_ref_sys) if defined?(Hangar)
 ```
 
+### Specifying DatabaseCleaner deletion strategy
+
+Not all ORMs support the deletion strategy, such as mongoid. You can override the clean strategy being used by the `DELETE /` request as follows:
+
+``` ruby
+# config/initializers/hangar.rb
+
+Hangar.clean_strategy = :truncation
+```
+
 ## Usage
 
 Hangar will create two factory routes for each factory registered with FactoryGirl. These routes mimic FactoryGirl's `create` and `attributes_for` methods, respectively:

@@ -16,4 +16,8 @@ describe 'Application', :application do
       require File.expand_path("../../dummy/config/environment", __FILE__)
     }.to raise_error{Hangar::BadEnvironmentError}
   end
+
+  it 'defaults clean_strategy to deletion' do
+    expect(Hangar.clean_strategy).to eq :deletion
+  end
 end
