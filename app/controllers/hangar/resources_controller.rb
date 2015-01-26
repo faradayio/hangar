@@ -1,6 +1,5 @@
 module Hangar
   class ResourcesController < ActionController::Base
-    respond_to :json
 
     def create
       created = FactoryGirl.create resource, resource_attributes
@@ -9,7 +8,7 @@ module Hangar
 
     def new
       attributes = FactoryGirl.attributes_for resource, resource_attributes
-      respond_with attributes
+      render json: attributes
     end
 
     private
