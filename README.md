@@ -63,6 +63,17 @@ You may override factory properties on your GET and POST requests using JSON as 
 { "post": { "title": "Dolor Sit Amet" } }
 ```
 
+### Specifying Traits
+
+You may specify factory traits on your GET and POST requests using JSON as follows:
+
+
+To specify traits POST the JSON as follows:
+
+```
+{ "traits": ["published"] }
+```
+
 ### Specifying Returned JSON Attributes
 
 Specifying JSON attributes to return is the same as the ActiveModel::Serializer's as_json() include option. In the below examples, comments is a has_many association of our model.
