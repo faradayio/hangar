@@ -18,6 +18,7 @@ describe 'Application', :application do
   end
 
   it 'defaults clean_strategy to deletion' do
+    Hangar # oh autoload
     expect(Hangar.clean_strategy).to eq :deletion
   end
 end
