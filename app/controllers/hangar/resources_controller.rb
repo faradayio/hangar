@@ -2,12 +2,12 @@ module Hangar
   class ResourcesController < ActionController::Base
 
     def create
-      created = FactoryGirl.create resource, resource_attributes
+      created = FactoryGirl.create resource, *traits, resource_attributes
       render json: created.as_json(include: includes)
     end
 
     def new
-      attributes = FactoryGirl.attributes_for resource, resource_attributes
+      attributes = FactoryGirl.attributes_for resource, *traits, resource_attributes
       render json: attributes
     end
 
@@ -19,6 +19,10 @@ module Hangar
 
     def resource_attributes
       params.fetch(resource, {}).permit!
+    end
+
+    def traits
+      params.fetch(:traits, []).map &:to_sym
     end
 
     def includes

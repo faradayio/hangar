@@ -35,6 +35,11 @@ describe Hangar::ResourcesController do
       expect(json['title']).to eq('Fun adventure')
       expect(json['comments'].count).to eq(5)
     end
+
+    it 'accepts traits' do
+      post :create, traits: ['trait'], format: :json
+      expect(json['title']).to eq('Title changed by trait')
+    end
   end
 
   describe '#new' do
@@ -66,6 +71,17 @@ describe Hangar::ResourcesController do
 
       it 'accepts attributes' do
         expect(json['title']).to eq('Fun adventure')
+      end
+    end
+
+    context 'with trait' do
+
+      before do
+        get :new, traits: ['trait'], format: :json
+      end
+
+      it 'accepts traits' do
+        expect(json['title']).to eq('Title changed by trait')
       end
     end
   end
