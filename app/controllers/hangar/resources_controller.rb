@@ -1,6 +1,8 @@
 module Hangar
   class ResourcesController < ActionController::Base
 
+    rescue_from StandardError, :with => :error_render_method
+
     def create
       created = FactoryGirl.create resource, *traits, resource_attributes
       render json: created.as_json(include: includes)
@@ -27,6 +29,15 @@ module Hangar
 
     def includes
       params.fetch(:include, [])
+    end
+
+    def error_render_method(exception)
+      status_code = ActionDispatch::ExceptionWrapper.new(env, exception).status_code
+      respond_to do |type|
+        type.json { render :json => {error: exception.message}.to_json, :status => status_code}
+        type.all { throw exception }
+      end
+      true
     end
   end
 end
