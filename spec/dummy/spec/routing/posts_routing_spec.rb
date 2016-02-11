@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Post routing' do
+describe 'Post routing', type: :routing do
   it 'provides #create route' do
     expect(post('/posts')).to route_to('posts#create')
   end  
