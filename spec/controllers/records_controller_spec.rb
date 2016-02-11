@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Hangar::RecordsController do
+describe Hangar::RecordsController, type: :controller do
   describe '#delete' do
     before do
       FactoryGirl.create :post

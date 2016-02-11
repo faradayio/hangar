@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe Hangar::ResourcesController do
+describe Hangar::ResourcesController, type: :controller do
   render_views
 
   describe '#create' do
 
     before do
-      request.path = '/posts'
+      request.path = '/hangar/posts'
     end
 
     it 'creates resources' do
@@ -40,12 +40,13 @@ describe Hangar::ResourcesController do
       post :create, traits: ['trait'], format: :json
       expect(json['title']).to eq('Title changed by trait')
     end
+
   end
 
   describe '#new' do
 
     before do
-      request.path = '/posts/new'
+      request.path = '/hangar/posts/new'
     end
 
     context 'without attributes' do

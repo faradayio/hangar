@@ -14,7 +14,7 @@ module Hangar
     private
 
     def resource
-      request.path.split('/')[1].singularize.to_sym
+      request.path.split('/')[2].singularize.to_sym
     end
 
     def resource_attributes

@@ -11,7 +11,6 @@ describe 'Application', :application do
   it 'dies when loading Hangar in non-test environment' do
     ENV['RACK_ENV'] = 'production'
     ENV['RAILS_ENV'] = 'production'
-    expect { defined? Hangar }.to be_true
     expect {
       require File.expand_path("../../dummy/config/environment", __FILE__)
     }.to raise_error{Hangar::BadEnvironmentError}

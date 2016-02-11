@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Factory routing' do
+describe 'Factory routing', type: :routing do
   HANGAR_HEADERS = {
     'HTTP_ACCEPT' => 'application/json',
     'HTTP_FACTORY' => 'hangar'
@@ -11,15 +11,15 @@ describe 'Factory routing' do
   end
 
   it 'provides #create route' do
-    expect(post: '/posts').to route_to('hangar/resources#create')
+    expect(post: '/hangar/posts').to route_to('hangar/resources#create')
   end
 
   it 'provides #new route' do
-    expect(get: '/posts/new').to route_to('hangar/resources#new')
+    expect(get: '/hangar/posts/new').to route_to('hangar/resources#new')
   end  
 
   it 'provides global #delete route' do
-    expect(delete: '/').to route_to('hangar/records#delete')
+    expect(delete: '/hangar').to route_to('hangar/records#delete')
   end  
 
   after do
