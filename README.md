@@ -105,6 +105,18 @@ Factory: hangar
 
 Hangar is designed to run in the *test environment only*. A warning will be displayed if it is loaded in any other environment.
 
+##For Contributors
+
+Clone the github repository:
+
+    git clone https://github.com/faradayio/hangar.git
+    cd hangar
+    bundle install
+
+Hangar's test suite runs against the included test application. Start that up with
+
+    rake spec
+
 ## Corporate support
 
 <p><a href="http://faraday.io"><img src="https://s3.amazonaws.com/creative.faraday.io/logo.png" alt="Faraday logo"/></a></p>
