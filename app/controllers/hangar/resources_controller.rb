@@ -18,7 +18,7 @@ module Hangar
     end
 
     def resource_attributes
-      params.fetch(resource, {}).permit!
+      params.fetch(resource, {}).permit!.to_h
     end
 
     def traits
