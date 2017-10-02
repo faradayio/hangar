@@ -16,6 +16,6 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
   config.order = "random"
-  config.treat_symbols_as_metadata_keys_with_true_values = true
   config.full_backtrace = true
+  config.infer_spec_type_from_file_location!
 end

@@ -19,25 +19,25 @@ describe Hangar::ResourcesController do
     end
 
     it 'accepts attributes' do
-      post :create, post: { title: 'Fun adventure' }, format: :json
+      post :create, params: { post: { title: 'Fun adventure' } }, format: :json
       expect(json['title']).to eq('Fun adventure')
     end
 
     it "accepts includes defining the association's columns" do
-      post :create, post: { title: 'Fun adventure' }, include: {"comments" => {"only" => "text"}},  format: :json
+      post :create, params: { post: { title: 'Fun adventure' }, include: { comments: { only: :text } } },  format: :json
       expect(json['title']).to eq('Fun adventure')
       expect(json['comments'].count).to eq(5)
       expect(json['comments'].first['text']).to eq("My comment")
     end
 
     it 'accepts includes defining associations' do
-      post :create, post: { title: 'Fun adventure' }, include: "comments",  format: :json
+      post :create, params: { post: { title: 'Fun adventure' }, include: "comments" },  format: :json
       expect(json['title']).to eq('Fun adventure')
       expect(json['comments'].count).to eq(5)
     end
 
     it 'accepts traits' do
-      post :create, traits: ['trait'], format: :json
+      post :create, params: { traits: ['trait'] }, format: :json
       expect(json['title']).to eq('Title changed by trait')
     end
   end
@@ -66,7 +66,7 @@ describe Hangar::ResourcesController do
     context 'with attributes' do
 
       before do
-        get :new, post: { title: 'Fun adventure' }, format: :json
+        get :new, params: { post: { title: 'Fun adventure' } }, format: :json
       end
 
       it 'accepts attributes' do
@@ -77,7 +77,7 @@ describe Hangar::ResourcesController do
     context 'with trait' do
 
       before do
-        get :new, traits: ['trait'], format: :json
+        get :new, params: { traits: ['trait'] }, format: :json
       end
 
       it 'accepts traits' do

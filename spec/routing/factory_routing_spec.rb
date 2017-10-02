@@ -7,7 +7,10 @@ describe 'Factory routing' do
   }
 
   before do
-    Rack::MockRequest::DEFAULT_ENV.merge! HANGAR_HEADERS
+    expect(Rack::MockRequest).to receive(:env_for).and_wrap_original do |original_method, *args, &block|
+      original_method.call(*args, &block).dup.tap { |hash| hash.merge! HANGAR_HEADERS }
+    end
+    # Rack::MockRequest::DEFAULT_ENV.merge! HANGAR_HEADERS
   end
 
   it 'provides #create route' do
@@ -22,9 +25,9 @@ describe 'Factory routing' do
     expect(delete: '/').to route_to('hangar/records#delete')
   end  
 
-  after do
-    HANGAR_HEADERS.keys.each do |k|
-      Rack::MockRequest::DEFAULT_ENV.delete k
-    end
-  end
+  # after do
+  #   HANGAR_HEADERS.keys.each do |k|
+  #     Rack::MockRequest::DEFAULT_ENV.delete k
+  #   end
+  # end
 end

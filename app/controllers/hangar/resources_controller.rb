@@ -3,7 +3,7 @@ module Hangar
 
     def create
       created = FactoryGirl.create resource, *traits, resource_attributes
-      render json: created.as_json(include: includes)
+      render json: created.as_json(include: includes.as_json)
     end
 
     def new
@@ -22,11 +22,11 @@ module Hangar
     end
 
     def traits
-      params.fetch(:traits, []).map &:to_sym
+      @traits ||= params[:traits].blank? ? [] : params.require(:traits).map(&:to_sym)
     end
 
     def includes
-      params.fetch(:include, [])
+      @includes ||= params[:include].blank? ? [] : params.require(:include)
     end
   end
 end
