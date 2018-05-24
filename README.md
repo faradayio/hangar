@@ -28,7 +28,7 @@ Hangar.do_not_delete = %w(very_important_things valuable_bitcoin_keys spatial_re
 
 ### Specifying DatabaseCleaner deletion strategy
 
-Not all ORMs support the deletion strategy, such as mongoid. You can override the clean strategy being used by the `DELETE /` request as follows:
+Not all ORMs support the deletion strategy, such as mongoid. You can override the clean strategy being used by the `DELETE /factori` request as follows:
 
 ``` ruby
 # config/initializers/hangar.rb
@@ -41,8 +41,8 @@ Hangar.clean_strategy = :truncation
 Hangar will create two factory routes for each factory registered with FactoryBot. These routes mimic FactoryBot's `create` and `attributes_for` methods, respectively:
 
 ```
-POST /posts
-GET /posts/new
+POST /factories/posts
+GET /factories/posts/new
 ```
 
 Both will respond with a JSON representation of the object.
@@ -50,7 +50,7 @@ Both will respond with a JSON representation of the object.
 Hangar also provides a route to clean the database after each test:
 
 ```
-DELETE /
+DELETE /factories
 ```
 
 This returns 204 No Content when successful.
