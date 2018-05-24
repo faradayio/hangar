@@ -28,7 +28,7 @@ Hangar.do_not_delete = %w(very_important_things valuable_bitcoin_keys spatial_re
 
 ### Specifying DatabaseCleaner deletion strategy
 
-Not all ORMs support the deletion strategy, such as mongoid. You can override the clean strategy being used by the `DELETE /factori` request as follows:
+Not all ORMs support the deletion strategy, such as mongoid. You can override the clean strategy being used by the `DELETE /factories` request as follows:
 
 ``` ruby
 # config/initializers/hangar.rb
