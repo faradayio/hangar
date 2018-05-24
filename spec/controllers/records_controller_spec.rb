@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Hangar::RecordsController do
   describe '#delete' do
     before do
-      FactoryGirl.create :post
-      FactoryGirl.create :very_important_thing
+      FactoryBot.create :post
+      FactoryBot.create :very_important_thing
     end
 
     it 'deletes all records' do

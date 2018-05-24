@@ -1,6 +1,6 @@
 # Hangar
 
-Hangar is a Rails Engine that exposes your [FactoryGirl](https://github.com/thoughtbot/factory_girl) factories with a REST API available in the test environment only
+Hangar is a Rails Engine that exposes your [FactoryBot](https://github.com/thoughtbot/factory_girl) factories with a REST API available in the test environment only
 
 ## Install
 
@@ -12,7 +12,7 @@ gem 'hangar', group: :test
 
 ## Requirements
 
-Your application must use FactoryGirl to manage its factories. Follow [FactoryGirl's documentation](https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md) to add factories to your application.
+Your application must use FactoryBot to manage its factories. Follow [FactoryBot's documentation](https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md) to add factories to your application.
 
 ## Configuration
 
@@ -38,7 +38,7 @@ Hangar.clean_strategy = :truncation
 
 ## Usage
 
-Hangar will create two factory routes for each factory registered with FactoryGirl. These routes mimic FactoryGirl's `create` and `attributes_for` methods, respectively:
+Hangar will create two factory routes for each factory registered with FactoryBot. These routes mimic FactoryBot's `create` and `attributes_for` methods, respectively:
 
 ```
 POST /posts
@@ -97,7 +97,7 @@ You must include the following headers with your requests:
 
 ```
 Accept: application/json; charset=utf-8
-Content-Type: application/json    
+Content-Type: application/json
 Factory: hangar
 ```
 
