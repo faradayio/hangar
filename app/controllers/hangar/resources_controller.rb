@@ -2,12 +2,12 @@ module Hangar
   class ResourcesController < ActionController::Base
 
     def create
-      created = FactoryGirl.create resource, *traits, resource_attributes
+      created = FactoryBot.create resource, *traits, resource_attributes
       render json: created.as_json(include: includes.as_json)
     end
 
     def new
-      attributes = FactoryGirl.attributes_for resource, *traits, resource_attributes
+      attributes = FactoryBot.attributes_for resource, *traits, resource_attributes
       render json: attributes
     end
 

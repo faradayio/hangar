@@ -15,7 +15,7 @@ describe Hangar::ResourcesController do
 
     it 'returns newly-created resource' do
       post :create, format: :json
-      expect(json.except('id')).to eq(FactoryGirl.create(:post).attributes.except('id'))
+      expect(json.except('id')).to eq(FactoryBot.create(:post).attributes.except('id'))
     end
 
     it 'accepts attributes' do
@@ -59,7 +59,7 @@ describe Hangar::ResourcesController do
       end
 
       it 'returns attributes' do
-        expect(response.body).to eq(FactoryGirl.attributes_for(:post).to_json)
+        expect(response.body).to eq(FactoryBot.attributes_for(:post).to_json)
       end
     end
 
