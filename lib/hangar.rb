@@ -5,12 +5,26 @@ require 'database_cleaner'
 module Hangar
   BadEnvironmentError = Class.new(StandardError)
 
-  mattr_writer :do_not_delete
+  mattr_writer :do_not_delete, :route_namespace
   mattr_accessor :clean_strategy
+
   self.clean_strategy = :deletion
+  self.route_namespace = nil
 
   def self.do_not_delete
     Array.wrap(@@do_not_delete)
+  end
+
+  def self.route_namespace
+    if(@@route_namespace.present?)
+      {
+        module: 'hangar',
+        path: @@route_namespace.to_s.pluralize,
+        as: @@route_namespace.to_s.singularize
+      }
+      else
+      { module: 'hangar' }
+    end
   end
 
   def validate_environment
