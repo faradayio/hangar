@@ -14,7 +14,8 @@ module Hangar
     private
 
     def resource
-      request.path.split('/')[1].singularize.to_sym
+      index = Hangar.route_namespace[:path].present? ? 2 : 1
+      request.path.split('/')[index].singularize.to_sym
     end
 
     def resource_attributes

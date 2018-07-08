@@ -37,5 +37,23 @@ describe Hangar::RecordsController do
       expect { delete :delete, format: :json }.to raise_error(DatabaseCleaner::UnknownStrategySpecified)
       Hangar.clean_strategy = clean_strategy
     end
+
+    context 'when route has a namespace' do
+      before do
+        Hangar.route_namespace = :factory
+        Rails.application.reload_routes!
+        request.path = '/factories'
+      end
+
+      after do
+        Hangar.route_namespace = nil
+        Rails.application.reload_routes!
+        request.path = '/'
+      end
+
+      it 'deletes the record' do
+        expect { delete :delete, format: :json }.to change(Post, :count).by(-1)
+      end
+    end
   end
 end
