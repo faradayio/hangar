@@ -40,6 +40,23 @@ describe Hangar::ResourcesController do
       post :create, params: { traits: ['trait'] }, format: :json
       expect(json['title']).to eq('Title changed by trait')
     end
+
+    context 'when route has a namespace' do
+      before do
+        Hangar.route_namespace = :factory
+        Rails.application.reload_routes!
+        request.path = '/factories/posts'
+      end
+
+      after do
+        Hangar.route_namespace = nil
+        Rails.application.reload_routes!
+      end
+
+      it 'creates resources' do
+        expect { post :create, format: :json }.to change(Post, :count).by(1)
+      end
+    end
   end
 
   describe '#new' do
@@ -82,6 +99,32 @@ describe Hangar::ResourcesController do
 
       it 'accepts traits' do
         expect(json['title']).to eq('Title changed by trait')
+      end
+    end
+
+    context 'when route has a namespace' do
+      before do
+        Hangar.route_namespace = :factory
+        Rails.application.reload_routes!
+        request.path = '/factories/posts'
+      end
+
+      after do
+        Hangar.route_namespace = nil
+        Rails.application.reload_routes!
+        request.path = '/'
+      end
+
+      before do
+        get :new, format: :json
+      end
+
+      it 'provides resource attributes' do
+        expect(response.status).to eq(200)
+      end
+
+      it 'returns attributes' do
+        expect(response.body).to eq(FactoryBot.attributes_for(:post).to_json)
       end
     end
   end
