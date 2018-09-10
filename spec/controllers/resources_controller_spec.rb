@@ -27,7 +27,10 @@ describe Hangar::ResourcesController do
       post :create, params: { post: { title: 'Fun adventure' }, include: { comments: { only: :text } } },  format: :json
       expect(json['title']).to eq('Fun adventure')
       expect(json['comments'].count).to eq(5)
-      expect(json['comments'].first['text']).to eq("My comment")
+      # this can be a custom matcher as well
+      expect(json['comments']).to all(
+        satisfy("have only key 'text'") { |comment| (comment.keys - ['text']).empty? }
+      )
     end
 
     it 'accepts includes defining associations' do

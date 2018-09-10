@@ -5,7 +5,7 @@ module Hangar
 
     def create
       created = FactoryBot.create resource, *traits, resource_attributes
-      render json: created.as_json(include: includes.as_json)
+      render json: created.as_json(include: includes)
     end
 
     def new
@@ -29,7 +29,19 @@ module Hangar
     end
 
     def includes
-      @includes ||= params[:include].blank? ? [] : params.require(:include)
+      @includes ||= begin
+        _includes = params.fetch(:include, {}).as_json
+
+        unless _includes.is_a?(Hash)
+          array_of_assocation_and_options_pairs = Array(_includes).flat_map do |n|
+            n.is_a?(Hash) ? n.to_a : [[n, {}]]
+          end
+
+          _includes = Hash[array_of_assocation_and_options_pairs]
+        end
+
+        _includes.deep_symbolize_keys
+      end
     end
 
     def error_render_method(exception)
