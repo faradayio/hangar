@@ -29,7 +29,7 @@ describe Hangar::ResourcesController do
       expect(json['comments'].count).to eq(5)
       # this can be a custom matcher as well
       expect(json['comments']).to all(
-        satisfy("have only key 'text'") { |comment| !(comment.keys - ['text']).empty? }
+        satisfy("have only key 'text'") { |comment| (comment.keys - ['text']).empty? }
       )
     end
 
