@@ -4,7 +4,8 @@ module Hangar
       Hangar.created_data.each do |key, value|
         value.constantize.delete(key)
       end
-      head :no_content, content_type: "text/html"
+      Hangar.created_data.clear
+      render json: {"delete": "success"}.to_json, status: 200
     end
   end
 end
