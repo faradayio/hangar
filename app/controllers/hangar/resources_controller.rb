@@ -2,6 +2,7 @@ module Hangar
   class ResourcesController < ActionController::Base
     def create
       created = FactoryBot.create resource, *traits, resource_attributes
+      Hangar.created_data[created.id.to_s] = created.model_name.to_s
       render json: created.as_json(include: includes)
     end
 
